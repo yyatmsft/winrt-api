@@ -1,3 +1,4 @@
+
 ---
 -api-id: P:Windows.Networking.Sockets.MessageWebSocketControl.DesiredUnsolicitedPongInterval
 -api-type: winrt property
@@ -7,14 +8,17 @@
 public TimeSpan DesiredUnsolicitedPongInterval { get;  set; }
 -->
 
-# Windows.Networking.Sockets.MessageWebSocketControl.DesiredUnsolicitedPongInterval
-
 ## -description
 Allows an app to get and set the desired unsolicited WebSocket PONG interval.
 ## -property-value
 System.Timespan
 ## -remarks
-This terminology is defined in WebSocket RFC 6455, which is the time between unsolicited Pong control frames sent by the client to the server. The PONG serves as a unidirectional heartbeat and can be used for the client to determine network connection issues.  
+This terminology is defined in WebSocket RFC 6455, which is the time between unsolicited Pong control frames sent by the client to the server. The PONG serves as a unidirectional heartbeat and can be used for the client to determine network connection issues. 
+
+Note that setting MessageWebSocketControl.DesiredUnsolicitedPongInterval or StreamWebSocketControl.DesiredUnsolicitedPongInterval property on a WebSocket associated with a [ControlChannelTrigger](https://docs.microsoft.com/en-us/uwp/api/Windows.Networking.Sockets.ControlChannelTrigger) is not supported. Setting the property has no effect on the actual interval.
+
+Even though a custom unsolicited PONG interval is not supported with a [ControlChannelTrigger](https://docs.microsoft.com/en-us/uwp/api/Windows.Networking.Sockets.ControlChannelTrigger) WebSocket, the [ControlChannelTrigger](https://docs.microsoft.com/en-us/uwp/api/Windows.Networking.Sockets.ControlChannelTrigger) is impacted by two types of keep-alive intervals  (1) network keep-alive interval and (2) server keep-alive interval.  See [ControlChannelTrigger Remarks](https://docs.microsoft.com/en-us/uwp/api/Windows.Networking.Sockets.ControlChannelTrigger#Remarks) for details. The server keep-alive interval can be configured through the [ServerKeepAliveIntervalInMinutes](https://docs.microsoft.com/en-us/uwp/api/windows.networking.sockets.controlchanneltrigger#Windows_Networking_Sockets_ControlChannelTrigger_ServerKeepAliveIntervalInMinutes) property to implement application level PONGs.
+
 ## -see-also
 [MessageWebSocket](messagewebsocket.md)
 ## -examples
